@@ -24,14 +24,15 @@ library(ggplot2)
 
 ## Plot data
 
-png("plot6.png", width=720)
+png("plot6.png")
 
 g <- ggplot(emissionForLAandBL, aes(x=year, y=cumulativeEmission, fill = County)) +
-  geom_bar(position="dodge", stat = "identity") + 
+  geom_bar(stat = "identity") +
+  facet_grid(County ~ ., scales="free") +
   labs(y = expression("Total PM"[2.5]*" emission from motor vehicle sources"), 
        x = "Year", 
-       title = expression("Total PM"[2.5]*" emission from motor vehicle sources - Baltimore City Vs Los Angeles County")) +
-   theme(panel.background = element_rect(fill = 'beige', colour = 'red'), plot.title = element_text(hjust = 0.5))
+       title = expression("Variation in motor vehicle emissions\nBaltimore City Vs Los Angeles County")) +
+   theme(panel.background = element_rect(fill = 'beige', colour = 'red'))
 
 print(g)
 
